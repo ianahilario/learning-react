@@ -7,7 +7,7 @@ export type Todo = {
   id: number;
   todo: string;
   isDone: boolean;
-  dataTestId: string;
+  appendToDataTestId: number;
 };
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
         id: Date.now(),
         todo: `${inputRef.current?.value}`,
         isDone: false,
-        dataTestId: `todo-item-${prevTodos.length + 1}`,
+        appendToDataTestId: prevTodos.length + 1,
       },
     ]);
     setTodo("")
@@ -63,7 +63,7 @@ function App() {
             id={todo.id}
             todo={todo.todo}
             isDone={todo.isDone}
-            dataTestId={todo.dataTestId}
+            appendToDataTestId={todo.appendToDataTestId}
             deleteTodo={deleteTodo}
             toggleDone={toggleDone}
           />

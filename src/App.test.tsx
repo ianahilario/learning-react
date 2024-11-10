@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import App from './App';
 import { TodoComponent } from './components/Todo';
 
@@ -12,7 +12,7 @@ test('renders todo form', () => {
   expect(submitButton).toBeInTheDocument();
 });
 
-test('should add todo item', () => {
+test('should add / delete todo item', () => {
   render(<App />);
   const todoField = screen.getByTestId("todo-field");
   const submitButton = screen.getByTestId("submit-todo");
@@ -20,12 +20,12 @@ test('should add todo item', () => {
   fireEvent.change(todoField, { target: { value: "Learn React" } });
   fireEvent.click(submitButton);
 
-  fireEvent.change(todoField, { target: { value: "Learn to write component test" } });
-  fireEvent.click(submitButton);
-
   const todoItem1 = screen.getByTestId("todo-item-1");
-  const todoItem2 = screen.getByTestId("todo-item-2");
+  const deleteTodoButton1 = within(todoItem1).getByTestId("delete-todo-1");
 
   expect(todoItem1).toBeInTheDocument();
-  expect(todoItem2).toBeInTheDocument();
+  expect(deleteTodoButton1).toBeInTheDocument();
+
+  fireEvent.click(deleteTodoButton1);
+  expect(todoItem1).not.toBeInTheDocument();
 });
