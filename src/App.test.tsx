@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import App from './App';
 
-test('renders todo form', () => {
+test('should render todo form', () => {
   render(<App />);
   const todoField = screen.getByTestId("todo-field");
   expect(todoField).toBeInTheDocument();
