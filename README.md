@@ -1,5 +1,6 @@
 **Reference**
 - https://www.telerik.com/blogs/getting-started-typescript-react
+- https://www.freecodecamp.org/news/how-to-write-unit-tests-in-react/
 
 # Getting Started with Create React App
 
