@@ -12,6 +12,7 @@ export const TodoComponent = ({
   id,
   todo,
   isDone,
+  dataTestId,
   deleteTodo,
   toggleDone,
 }: TodoProps) => {
@@ -19,6 +20,7 @@ export const TodoComponent = ({
     <li
       className={isDone ? "todo done" : "todo"}
       onClick={() => toggleDone(id)}
+      data-testid={`${dataTestId}`}
     >
       <div>
         <p>{todo}</p>

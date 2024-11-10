@@ -7,6 +7,7 @@ export type Todo = {
   id: number;
   todo: string;
   isDone: boolean;
+  dataTestId: string;
 };
 
 function App() {
@@ -23,11 +24,12 @@ function App() {
     event.preventDefault();
     if (inputRef.current?.value.length === 0) return;
     setTodos((prevTodos) => [
-     ...prevTodos,
-       {
+      ...prevTodos,
+      {
         id: Date.now(),
         todo: `${inputRef.current?.value}`,
         isDone: false,
+        dataTestId: `todo-item-${prevTodos.length + 1}`,
       },
     ]);
     setTodo("")
@@ -51,16 +53,17 @@ function App() {
      <div className="App">
       <h1>React-TypeScript To-do list</h1>
       <form onSubmit={handleAdd}>
-        <input type="text" ref={inputRef} onChange={(e) => setTodo(e.target.value)} value={todo} />
-        <button type="submit">Add New</button>
+        <input type="text" data-testid="todo-field" ref={inputRef} onChange={(e) => setTodo(e.target.value)} value={todo} />
+        <button type="submit" data-testid="submit-todo" >Add New</button>
       </form>
-      <ul className="todos">
+      <ul className="todos" data-testid="todo-items">
         {todos.map((todo, key) => (
           <TodoComponent
             key={key}
             id={todo.id}
             todo={todo.todo}
             isDone={todo.isDone}
+            dataTestId={todo.dataTestId}
             deleteTodo={deleteTodo}
             toggleDone={toggleDone}
           />
